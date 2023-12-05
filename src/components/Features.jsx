@@ -55,7 +55,7 @@ function Features() {
   return (
     <Box p={["1","1"]}>
       <Stack spacing={4}as={Container} maxW={"3xl"} textAlign={"center"}>
-        <Heading fontSize={{ base: "2xl", sm: "4xl" }} fontWeight={"bold"} color='purple.400'>
+        <Heading fontSize={{ base: "2xl", sm: "4xl" }} fontWeight={"bold"} color='purple.300'>
           What is
           NightClub ?
         </Heading>
