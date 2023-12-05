@@ -1174,7 +1174,6 @@ function Home() {
       </Stack>
       <Features/> <br />
       <br /><br />
-      <Price/>
     </Container>
     
   )
