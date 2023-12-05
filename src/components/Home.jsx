@@ -1,5 +1,6 @@
 import React from 'react'
 import Features from './Features';
+import Price from './Price';
 
 import {
   Flex,
@@ -1171,8 +1172,9 @@ function Home() {
           <Illustration height={{ sm: '24rem', lg: '20rem' }} />
         </Flex>
       </Stack>
-      <Features/>
+      <Features/> <br />
       <br /><br />
+      <Price/>
     </Container>
     
   )

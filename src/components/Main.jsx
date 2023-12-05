@@ -14,8 +14,9 @@ const Main = () => {
     navigate('/login?query=logout')
   }
   return (
-    <>
-      <h1 style={{color:"white"}}>hello</h1>
+    <> <br /> <br /> <br />
+      <h1 style={{color:"white"}}>Inguz is building this currently come back later</h1>
+
       <Button
                 bg={'blue.400'}
                 color={'white'}
