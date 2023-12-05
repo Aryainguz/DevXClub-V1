@@ -1,6 +1,6 @@
 import React from 'react'
 import Features from './Features';
-import Price from './Price';
+import CTA from './CTA';
 
 import {
   Flex,
@@ -1130,6 +1130,7 @@ const Illustration = (props) => {
 }
 function Home() {
   return (
+    <>
     <Container maxW={'5xl'} marginTop={['4','-8']} p={['6','4']} h="100%">
       <Stack
         textAlign={'center'}
@@ -1172,9 +1173,10 @@ function Home() {
           <Illustration height={{ sm: '24rem', lg: '20rem' }} />
         </Flex>
       </Stack>
-      <Features/> <br />
-      <br /><br />
+      <Features/>
     </Container>
+    <CTA/>
+      </>
     
   )
 }
