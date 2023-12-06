@@ -69,7 +69,7 @@ const CTA = () => {
                     }}
                     lineHeight="shorter"
                 >
-                    A secure, faster way to transfer.
+                   The Project Mayhem
                 </chakra.h1>
                 <chakra.p
                     mb={6}
@@ -80,9 +80,7 @@ const CTA = () => {
                     color="gray.500"
                     lineHeight="base"
                 >
-                    We’re on a mission to bring transparency to finance. We charge as
-                    little as possible, and we always show you upfront. No hidden fees. No
-                    bad exchange rates. No surprises.
+                    Project Mayhem is a mission to bring the most exciting devs together to do something for the history books.
                 </chakra.p>
                 <SimpleGrid
                     as="form"

@@ -3,6 +3,7 @@ import {
   Button,
   Container,
   Flex,
+  chakra,
   Heading,
   Icon,
   Stack,
@@ -14,6 +15,7 @@ import {
   FcCollaboration,
   FcIdea
 } from "react-icons/fc"
+
 
 const Card = ({ heading, description, icon, href }) => {
   return (
@@ -55,10 +57,24 @@ function Features() {
   return (
     <Box p={["1","1"]}>
       <Stack spacing={4}as={Container} maxW={"3xl"} textAlign={"center"}>
-        <Heading fontSize={{ base: "2xl", sm: "4xl" }} fontWeight={"bold"} color='purple.300'>
-          What is
-          NightClub ?
-        </Heading>
+      <chakra.h1
+                    mb={3}
+                    fontSize={{
+                        base: "4xl",
+                        md: "5xl",
+                    }}
+                    fontWeight={{
+                        base: "bold",
+                        md: "extrabold",
+                    }}
+                    color="gray.900"
+                    _dark={{
+                        color: "gray.100",
+                    }}
+                    lineHeight="shorter"
+                >
+                    What is NightClub ?
+                </chakra.h1>
         <Text color={"gray.500"} fontSize={{ base: "sm", sm: "lg" }}>
           NightClub is a community of builders, creators, and learners who collaborate at night to build cool stuff and maybe more!
         </Text>
