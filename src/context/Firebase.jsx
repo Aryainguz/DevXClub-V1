@@ -1,8 +1,8 @@
 import {initializeApp} from 'firebase/app';
-import { createContext } from 'react';
-import {createUserWithEmailAndPassword, getAuth} from 'firebase/auth';
+import { createContext, useState } from 'react';
+import {createUserWithEmailAndPassword, getAuth, sendEmailVerification,signInWithEmailAndPassword} from 'firebase/auth';
 import { getDatabase, ref, set } from "firebase/database";     
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";     
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";   
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -23,8 +23,10 @@ export const FirebaseContext = createContext(null);
 
 export const FirebaseProvider = ({children}) => {
 
-    const signUpwithEmail = (email, password) => {
-        createUserWithEmailAndPassword(auth, email, password)
+    const signUpwithEmail = async (email, password) => {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+        const user = userCredential.user;
+        await sendEmailVerification(user);
     };
 
     const putData = (key,data) => {
@@ -37,13 +39,22 @@ export const FirebaseProvider = ({children}) => {
     
     }
 
+    const signInWithEmail = async (email,password,next) => {
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
+    const currentUser = () => {
+        return auth.currentUser;
+    }
 
     const logoutHandle = () => {
         auth.signOut();
     }
 
+    const [user, setUser] = useState(null);           
+
     return (
-        <FirebaseContext.Provider value={{signUpwithEmail,putData,signInWithGoogle,logoutHandle}}>
+        <FirebaseContext.Provider value={{signUpwithEmail,putData,signInWithGoogle,logoutHandle,signInWithEmail,currentUser,setUser,user}}>
         {children}
         </FirebaseContext.Provider>
     )
