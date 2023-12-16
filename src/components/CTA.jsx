@@ -1,5 +1,11 @@
 import React from 'react'
 import {
+    AlertDialogBody,
+    AlertDialogCloseButton,
+    AlertDialogContent,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogOverlay,
     Box,
     Button,
     chakra,
@@ -10,7 +16,13 @@ import {
     SimpleGrid,
     Stack,
     VisuallyHidden,
+    useDisclosure,
+    useMergeRefs,
+    useColorModeValue,
+    AlertDialog,
+    Image
 } from '@chakra-ui/react'
+import imgx from "../images/imgx.png"
 
 
 const CTA = () => {
@@ -39,8 +51,12 @@ const CTA = () => {
         </Flex>
     );
 
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const cancelRef = React.useRef()
+
     return (
         <Box px={[8,4]} py={[28,32]} mx="auto">
+            <Image src={imgx} alt='illustration' margin={'auto'}></Image>
             <Box
                 w={{
                     base: "full",
@@ -69,7 +85,7 @@ const CTA = () => {
                     }}
                     lineHeight="shorter"
                 >
-                   The Project Mayhem
+                   The Exciting Mission
                 </chakra.h1>
                 <chakra.p
                     mb={6}
@@ -80,7 +96,30 @@ const CTA = () => {
                     color="gray.500"
                     lineHeight="base"
                 >
-                    Project Mayhem is a mission to bring the most exciting devs together to do something for the history books.
+                    We are on a mission to build the best community of developers, builders and leaders.
+                    <br /> <br />
+                    <Button onClick={onOpen}> Know More </Button>
+      <AlertDialog
+        motionPreset='slideInBottom'
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+        isOpen={isOpen}
+        isCentered
+      >
+        <AlertDialogOverlay />
+
+        <AlertDialogContent>
+          <AlertDialogHeader></AlertDialogHeader>
+          <AlertDialogCloseButton />
+          <AlertDialogBody>
+           DevClub is powered by The Xiting Way ( TXW ), <br />
+            a software development company from Chandigarh, India. Our motto of revolutionizing technology for the 21st century is a testament to DevClub's foundation. <br /> <a href="https://www.thexitingway.com/">www.TheXitingWay.com</a> 
+          </AlertDialogBody>
+          <AlertDialogFooter>
+           - Aryan Inguz, CTO - TXW
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
                 </chakra.p>
                 <SimpleGrid
                     as="form"
@@ -119,7 +158,7 @@ const CTA = () => {
                         cursor="pointer"
                         bg={'purple.400'}
                     >
-                        Get Started
+                        Join Now
                     </Button>
                 </SimpleGrid>
                 <Stack
@@ -140,9 +179,9 @@ const CTA = () => {
                     fontSize="xs"
                     color="gray.600"
                 >
-                    <Feature>No credit card required</Feature>
-                    <Feature>14 days free</Feature>
-                    <Feature>Cancel anytime</Feature>
+                    <Feature>Developers</Feature>
+                    <Feature>Builders</Feature>
+                    <Feature>Leaders</Feature>
                 </Stack>
             </Box>
         </Box>
