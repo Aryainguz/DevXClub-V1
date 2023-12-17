@@ -20,11 +20,13 @@ import {auth} from './context/Firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import About from './components/About';
 import Footer from './components/Footer';
-
+import { FirebaseContext } from './context/Firebase';
+import { useContext } from 'react';
+import Sidebar from './components/Sidebar';
 
 function App() {
 
-  const [user,setUser] = useState(null);
+  const {user,setUser} = useContext(FirebaseContext);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {   //auth is imported from context/firebase.jsx
@@ -33,17 +35,17 @@ function App() {
       } else {
         setUser(null);
       }
-    }
-  )}, []);
+    });
+  },[user]);
+
   return (
     <Router>
-      <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/register' element={<Signup/>}/>
         <Route path='/about' element={<About/>}/>
-        <Route path='/login' 
-        {...user ? {element: <Main/>} : {element: <Signin/>}}/> 
+        <Route path='/login' {...user && user.emailVerified ? {element: <Main/>} : {element: <Signin/>}}/> 
+        <Route path='/main' {...user && user.emailVerified ? {element: <Main/>} : {element: <Signin/>}}/> 
       </Routes>
       <Footer/>
     </Router>
