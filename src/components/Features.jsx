@@ -73,10 +73,10 @@ function Features() {
                     }}
                     lineHeight="shorter"
                 >
-                    What is NightClub ?
+                    What is DevClub ?
                 </chakra.h1>
         <Text color={"gray.500"} fontSize={{ base: "sm", sm: "lg" }}>
-          NightClub is a community of builders, creators, and learners who collaborate at night to build cool stuff and maybe more!
+          DevClub is a community of Developers, Builders, and Leaders who collaborate to build some cool stuff and maybe dreams!
         </Text>
       </Stack>
 
@@ -86,23 +86,23 @@ function Features() {
             heading={"Code"}
             icon={<Icon as={FcCommandLine} w={16} h={10} />}
             description={
-              "Code your passion and make your ideas into reality"
+              "Code your ideas into reality with DevClub's elite resources and passionate community"
             }
             href={"#"}
           />
           <Card
-            heading={"Collaborate"}
+            heading={"Build"}
             icon={<Icon as={FcCollaboration} w={10} h={10} />}
             description={
-              "Collaborate with cool developers who match your vision"
+              "Build your applications to a startup with visionary community and elite mentorship"
             }
             href={"#"}
           />
           <Card
-            heading={"Create"}
+            heading={"Learn"}
             icon={<Icon as={FcIdea} w={10} h={10} />}
             description={
-              "Create something cool and share it with the world!"
+              "Not sure about first two ? start your Dev journey from scratch with elite our resources, events and community"
             }
             href={"#"}
           />
