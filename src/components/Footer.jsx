@@ -10,6 +10,8 @@ import {
   Flex
 } from "@chakra-ui/react"
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa"
+import { FirebaseContext } from "../context/Firebase"
+import { useContext } from "react"
 
 const Logo = props => {
   return (
@@ -56,10 +58,12 @@ const SocialButton = ({ children, label, href }) => {
 }
 
 function Footer() {
+  const {user} = useContext(FirebaseContext)
+  if(user && user.emailVerified){
+    return null;
+  }
   return (
     <Box
-      bg={useColorModeValue("gray.50", "gray.900")}
-      color={useColorModeValue("gray.700", "gray.200")}
     >
       <Container
         as={Stack}
@@ -93,7 +97,6 @@ function Footer() {
       <Box
         borderTopWidth={1}
         borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.700")}
       >
         <Container
           as={Stack}
