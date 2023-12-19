@@ -19,10 +19,9 @@ import { BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import {auth} from './context/Firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import About from './components/About';
-import Footer from './components/Footer';
 import { FirebaseContext } from './context/Firebase';
 import { useContext } from 'react';
-import Sidebar from './components/Sidebar';
+import Error from './components/Error';
 
 function App() {
 
@@ -46,8 +45,8 @@ function App() {
         <Route path='/about' element={<About/>}/>
         <Route path='/login' {...user && user.emailVerified ? {element: <Main/>} : {element: <Signin/>}}/> 
         <Route path='/main' {...user && user.emailVerified ? {element: <Main/>} : {element: <Signin/>}}/> 
+        <Route path='*' element={<Error/>}/>
       </Routes>
-      <Footer/>
     </Router>
 
   );
