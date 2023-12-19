@@ -85,7 +85,7 @@ const CTA = () => {
                     }}
                     lineHeight="shorter"
                 >
-                   The Exciting Mission
+                A TXW Innovation.
                 </chakra.h1>
                 <chakra.p
                     mb={6}
@@ -96,9 +96,25 @@ const CTA = () => {
                     color="gray.500"
                     lineHeight="base"
                 >
-                    We are on a mission to build the best community of developers, builders and leaders.
+                    Powered by The Xiting Way, DevClub is on a mission to build the most exciting community of developers, builders and leaders.
                     <br /> <br />
-                    <Button onClick={onOpen}> Know More </Button>
+                    <Button
+                        onClick={onOpen}
+                        as={GridItem}
+                        w="auto"
+                        variant="solid"
+                        colSpan={{
+                            base: "auto",
+                            lg: 2,
+                        }}
+                        size="lg"
+                        type="submit"
+                        colorScheme="brand"
+                        cursor="pointer"
+                        bg={'purple.400'}
+                    >
+                        Know More
+                    </Button>
       <AlertDialog
         motionPreset='slideInBottom'
         leastDestructiveRef={cancelRef}
@@ -113,10 +129,10 @@ const CTA = () => {
           <AlertDialogCloseButton />
           <AlertDialogBody>
            DevClub is powered by The Xiting Way ( TXW ), <br />
-            a software development company from Chandigarh, India. Our motto of revolutionizing technology for the 21st century is a testament to DevClub's foundation. <br /> <a href="https://www.thexitingway.com/">www.TheXitingWay.com</a> 
+            a software development company from Chandigarh, India. Our motto of revolutionizing technology for the 21st century is a testament to DevClub's foundation. <br /> <a href="https://www.thexitingway.com/" target='_blank'>www.TheXitingWay.com</a> 
           </AlertDialogBody>
           <AlertDialogFooter>
-           - Aryan Inguz, CTO - TXW
+           - Team DevClub
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
@@ -144,22 +160,7 @@ const CTA = () => {
                         }}
                     >
                     </GridItem>
-                    <Button
-                        as={GridItem}
-                        w="full"
-                        variant="solid"
-                        colSpan={{
-                            base: "auto",
-                            lg: 2,
-                        }}
-                        size="lg"
-                        type="submit"
-                        colorScheme="brand"
-                        cursor="pointer"
-                        bg={'purple.400'}
-                    >
-                        Join Now
-                    </Button>
+
                 </SimpleGrid>
                 <Stack
                     display="flex"
@@ -179,8 +180,8 @@ const CTA = () => {
                     fontSize="xs"
                     color="gray.600"
                 >
-                    <Feature>Developers</Feature>
-                    <Feature>Builders</Feature>
+                    <Feature>Beginners</Feature>
+                    <Feature>Learners</Feature>
                     <Feature>Leaders</Feature>
                 </Stack>
             </Box>
