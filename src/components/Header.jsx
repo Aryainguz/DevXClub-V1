@@ -21,7 +21,7 @@ const Header = () => {
                 <DrawerOverlay>
                     <DrawerContent>
                         <DrawerCloseButton />
-                        <DrawerHeader colorScheme="purple" p="4">NightClub</DrawerHeader>
+                        <DrawerHeader colorScheme="purple" p="4">DevClub</DrawerHeader>
                         <DrawerBody>
                             <VStack alignItems={"flex-start"}>
                                 <Link to="/">
@@ -34,9 +34,9 @@ const Header = () => {
                                         About
                                     </Button>
                                 </Link>
-                                <Link to="/">
+                                <Link to="/main">
                                     <Button onClick={onClose} colorScheme='purple' variant={"ghost"}>
-                                        Contribute
+                                        DevClub
                                     </Button>
                                 </Link>
                             </VStack>
