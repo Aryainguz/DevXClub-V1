@@ -9,9 +9,10 @@ import {
   VisuallyHidden,
   Flex
 } from "@chakra-ui/react"
-import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa"
+import { FaGithub, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa"
 import { FirebaseContext } from "../context/Firebase"
 import { useContext } from "react"
+import { Link } from "react-router-dom"
 
 const Logo = props => {
   return (
@@ -58,10 +59,6 @@ const SocialButton = ({ children, label, href }) => {
 }
 
 function Footer() {
-  const {user} = useContext(FirebaseContext)
-  if(user && user.emailVerified){
-    return null;
-  }
   return (
     <Box
     >
@@ -79,16 +76,16 @@ function Footer() {
         </Flex>
 
         <Stack direction={"row"} spacing={6}>
-          <Box as="a" href={"#"}>
+          <Box as={Link} to={"/"}>
             Home
           </Box>
-          <Box as="a" href={"#"}>
+          <Box as={Link} to={"/about"}>
             About
           </Box>
-          <Box as="a" href={"#"}>
-            Contribute
+          <Box as={Link} to={"/main"}>
+            DevClub
           </Box>
-          <Box as="a" href={"#"}>
+          <Box as={Link} to={"/register"}>
             Join
           </Box>
         </Stack>
@@ -107,15 +104,18 @@ function Footer() {
           justify={{ base: "center", md: "space-between" }}
           align={{ base: "center", md: "center" }}
         >
-          <Text>© 2023 Aryan Inguz</Text>
+          <Text>© 2023 DevClub - A TXW Innovation </Text>
           <Stack direction={"row"} spacing={6}>
-            <SocialButton label={"Twitter"} href={"#"}>
+            <SocialButton label={"Twitter"} href={"https://twitter.com/aryaninguz369"}>
               <FaTwitter />
             </SocialButton>
-            <SocialButton label={"YouTube"} href={"#"}>
+            <SocialButton label={"Github"} href={"#"}>
+              <FaGithub />
+            </SocialButton>
+            <SocialButton label={"Youtube"} href={""}>
               <FaYoutube />
             </SocialButton>
-            <SocialButton label={"Instagram"} href={"#"}>
+            <SocialButton label={"Instagram"} href={"https://www.instagram.com/aryaninguz.py/"}>
               <FaInstagram />
             </SocialButton>
           </Stack>

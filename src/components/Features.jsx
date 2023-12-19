@@ -102,7 +102,7 @@ function Features() {
             heading={"Learn"}
             icon={<Icon as={FcIdea} w={10} h={10} />}
             description={
-              "Not sure about first two ? start your Dev journey from scratch with elite our resources, events and community"
+              "Not sure about first two? start your Dev journey from scratch with elite our resources, events and community"
             }
             href={"#"}
           />
