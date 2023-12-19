@@ -9,19 +9,27 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  Center
 } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import toast,{Toaster} from 'react-hot-toast'
+import { useContext } from 'react'
+import { FirebaseContext} from '../context/Firebase'
+import { FcGoogle } from 'react-icons/fc'
+
 
 
 
 const Signin = ()=>{
+  const { signInWithEmail,currentUser,signInWithGoogle} = useContext(FirebaseContext);
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const location = useLocation();
+  const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get('query');
 
@@ -37,11 +45,32 @@ const Signin = ()=>{
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-
+    try {
+        await signInWithEmail(email, password)
+        const data = currentUser()
+        const emailVerified = data.emailVerified
+      if(emailVerified){
+        toast.success('Logged in successfully')
+        navigate('/main')
+      }
+      else{
+        toast.error('Please verify your email address!')
+      }
+    } catch (error) {
+      console.log(error.message)
     }
+  }
 
-          
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithGoogle()
+      if (signInWithGoogle) {
+        navigate('/login')
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }       
 
   return (
     <Flex
@@ -51,7 +80,7 @@ const Signin = ()=>{
       bg={useColorModeValue('gray.50', 'gray.800')}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
-          <Heading fontSize={'4xl'}>Sign in to your account</Heading>
+          <Heading fontSize={'4xl'}>Sign in to NightClub!</Heading>
           <Text fontSize={'lg'} color={'gray.600'}>
             <Text color={'blue.400'}>Welcome Back!</Text>
           </Text>
@@ -89,6 +118,11 @@ const Signin = ()=>{
                 }}>
                 Login
               </Button>
+              <Button w={'full'} variant={'outline'} leftIcon={<FcGoogle />} onClick={handleGoogleSignIn}>
+                <Center>
+                  <Text>Sign in with Google</Text>
+                </Center>
+              </Button>
             </Stack>
             </form>
           </Stack>
@@ -98,6 +132,4 @@ const Signin = ()=>{
     </Flex>
   )
 }
-
-
-export default Signin
+export default Signin;
