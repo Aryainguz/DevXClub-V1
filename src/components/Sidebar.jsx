@@ -15,7 +15,7 @@ import {
   InputLeftElement,
   Input
 } from '@chakra-ui/react'; // Import Chakra UI components and hooks
-
+import { Link } from 'react-router-dom'
 import {
   FiMenu,
   FiSearch,
@@ -36,7 +36,7 @@ const Sidebar = ({children}) => {
   const integrations = useDisclosure();
   const color = useColorModeValue("gray.600", "gray.300");
   
-  const {logoutHandle,currentUser} = useContext(FirebaseContext)
+  const {logoutHandle,currentUser,setSearch,search} = useContext(FirebaseContext)
   const navigate = useNavigate()
   
   const handleLogout = () => {
@@ -115,6 +115,8 @@ const Sidebar = ({children}) => {
             color: "white",
           }}
           fontWeight="semibold"
+          as={Link}
+          to={'/'}
         >
           DevClub
         </Text>
@@ -126,10 +128,10 @@ const Sidebar = ({children}) => {
         color="gray.600"
         aria-label="Main Navigation"
       >
-        <NavItem icon={MdHome}>DevHome</NavItem>
-        <NavItem icon={FaRss}>Courses</NavItem>
+        <NavItem icon={MdHome} as={Link} to={'/devclub'}>DevHome</NavItem>
+        {/* <NavItem icon={FaRss} as={Link} to={'/event'}>DevEvents</NavItem> */}
         <NavItem icon={HiCode} onClick={integrations.onToggle}>
-          DevLibrary
+          DevCourses
           <Icon
             as={MdKeyboardArrowRight}
             ml="auto"
@@ -137,21 +139,23 @@ const Sidebar = ({children}) => {
           />
         </NavItem>
         <Collapse in={integrations.isOpen}>
-          <NavItem pl="12" py="2">
+          {/* <NavItem pl="12" py="2">
             Shopify
           </NavItem>
           <NavItem pl="12" py="2">
             Slack
-          </NavItem>
+          </NavItem> */}
           <NavItem pl="12" py="2">
-            Zapier
+            Coming Soon
           </NavItem>
         </Collapse>
-        <NavItem icon={FaClipboardCheck}>Events</NavItem>
         <NavItem icon={FaSignOutAlt} onClick={handleLogout}>SignOut</NavItem>
       </Flex>
     </Box>
   );
+
+  
+  
 
   return (
     <Box
@@ -210,16 +214,18 @@ const Sidebar = ({children}) => {
             size="sm"
           />
           <InputGroup
-            w="96"
+            w={["60","96"]}
+            mr={["16","0"]}
             display={{
-              base: "none",
+              base: "flex",
               md: "flex",
             }}
           >
-            <InputLeftElement color="gray.500">
+            <InputLeftElement color="gray.500" 
+            >
               <FiSearch />
             </InputLeftElement>
-            <Input placeholder="Search for articles..." />
+            <Input placeholder="Search for articles..." onChange={(e) => setSearch(e.target.value)} />
           </InputGroup>
         </Flex>
 

@@ -3,6 +3,8 @@ import { createContext, useState } from 'react';
 import {createUserWithEmailAndPassword, getAuth, sendEmailVerification,signInWithEmailAndPassword} from 'firebase/auth';
 import { getDatabase, ref, set } from "firebase/database";     
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";   
+import { getDocs, collection, getFirestore } from "firebase/firestore";
+
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -51,10 +53,14 @@ export const FirebaseProvider = ({children}) => {
         auth.signOut();
     }
 
-    const [user, setUser] = useState(null);           
+    const [user, setUser] = useState(null);   
+    
+    const [search, setSearch] = useState('');
+
+    const db = getFirestore(firebaseApp);
 
     return (
-        <FirebaseContext.Provider value={{signUpwithEmail,putData,signInWithGoogle,logoutHandle,signInWithEmail,currentUser,setUser,user}}>
+        <FirebaseContext.Provider value={{signUpwithEmail,putData,signInWithGoogle,logoutHandle,signInWithEmail,currentUser,setUser,user,search,setSearch,db}}>
         {children}
         </FirebaseContext.Provider>
     )
