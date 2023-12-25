@@ -44,7 +44,7 @@ function App() {
         <Route path='/register' element={<Signup/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/login' {...user && user.emailVerified ? {element: <Main/>} : {element: <Signin/>}}/> 
-        <Route path='/main' {...user && user.emailVerified ? {element: <Main/>} : {element: <Signin/>}}/> 
+        <Route path='/devclub' {...user && user.emailVerified ? {element: <Main/>} : {element: <Signin/>}}/>
         <Route path='*' element={<Error/>}/>
       </Routes>
     </Router>
