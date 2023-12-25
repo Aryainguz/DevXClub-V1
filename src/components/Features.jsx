@@ -80,7 +80,8 @@ function Features() {
         </Text>
       </Stack>
 
-      <Container maxW={"5xl"} mt={12}>
+      <Container maxW={"5xl"} mt={12}
+      >
         <Flex flexWrap="wrap" gridGap={10} justify="center">
           <Card
             heading={"Code"}

@@ -13,11 +13,8 @@ import {
   IconProps,
   Image
 } from '@chakra-ui/react'
-import imgx2 from "../images/imgx2.png"
 import Header from './Header';
 import Illustration from './Illustration';
-import Articles from './Articles';
-import FeaturesTwo from './FeaturesTwo';
 
 function Home() {
   return (
@@ -41,6 +38,10 @@ function Home() {
 
           Dev
           </Text>
+          <Text as={'span'} color={'purple.300'}>
+
+X
+</Text>
           <Text as={'span'} color={'purple.400'}>
             Club.
           </Text>
@@ -68,7 +69,6 @@ function Home() {
       </Stack>
       <Features/>
     </Container>
-    <Articles/>
     <CTA/>
     <Footer/>
       </>
