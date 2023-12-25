@@ -85,7 +85,7 @@ const CTA = () => {
                     }}
                     lineHeight="shorter"
                 >
-                A TXW Innovation.
+                Events && Workshops
                 </chakra.h1>
                 <chakra.p
                     mb={6}
@@ -96,7 +96,7 @@ const CTA = () => {
                     color="gray.500"
                     lineHeight="base"
                 >
-                    Powered by The Xiting Way, DevClub is on a mission to build the most exciting community of developers, builders and leaders.
+                    Join us for the coolest tech. related events and workshops where you can network with like-minded people and learn from the best in the industry.
                     <br /> <br />
                     <Button
                         onClick={onOpen}
@@ -113,7 +113,7 @@ const CTA = () => {
                         cursor="pointer"
                         bg={'purple.400'}
                     >
-                        Know More
+                        A TXW Innovation
                     </Button>
       <AlertDialog
         motionPreset='slideInBottom'
@@ -129,7 +129,7 @@ const CTA = () => {
           <AlertDialogCloseButton />
           <AlertDialogBody>
            DevClub is powered by The Xiting Way ( TXW ), <br />
-            a software development company from Chandigarh, India. Our motto of revolutionizing technology for the 21st century is a testament to DevClub's foundation. <br /> <a href="https://www.thexitingway.com/" target='_blank'>www.TheXitingWay.com</a> 
+            a software development company from Chandigarh, India. Our motto of revolutionizing technology for the 21st century is a testament to DevClub's foundation. <br /> <a href="https://www.thexitingway.com/" target='_blank'>www.thexitingway.com</a> 
           </AlertDialogBody>
           <AlertDialogFooter>
            - Team DevClub
