@@ -7,9 +7,7 @@ import {
   HStack,
   Grid,
   Text,
-  Image,
   useColorModeValue,
-  Container,
   Icon,
   useDisclosure,
   Modal,
@@ -21,27 +19,27 @@ import {
   ModalFooter,
   ButtonGroup,
 } from "@chakra-ui/react"
-import { FaCalendar, FaCalendarTimes, FaMapMarkedAlt } from "react-icons/fa"
-import { Link } from "react-router-dom"
-import React from "react"
+
 import {
   FormLayout,
   PrevButton,
   NextButton,
   FormStepper,
   StepsCompleted,
-  FormValue,
   LoadingOverlay,
-  LoadingSpinner,
   LoadingText,
-  PropertyList,
-  Property,
 } from '@saas-ui/react'
+
+import { FaCalendar, FaMapMarkedAlt } from "react-icons/fa"
+import { Link } from "react-router-dom"
+import React from "react"
 import { StepForm } from '@saas-ui/forms/yup'
 import * as yup from 'yup'
-import { addDoc,collection} from "firebase/firestore"
+import { addDoc, collection, getDocs } from "firebase/firestore"
 import { FirebaseContext } from '../context/Firebase'
 import { useContext } from 'react'
+import toast,{Toaster} from 'react-hot-toast'
+
 
 
 function Card({
@@ -53,13 +51,11 @@ function Card({
   hashtags
 }) {
 
-
-
   const { db, user } = useContext(FirebaseContext)
-
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef()
   const finalRef = React.useRef()
+
   const steps = [
     {
       name: 'Personal Details',
@@ -80,39 +76,47 @@ function Card({
       }),
     },
     {
-      name:"Event Details",
+      name: "Event Details",
       user_email: user.email,
       event_name: title,
       event_date: date,
-      event_time:time,
+      event_time: time,
       event_location: location
     }
   ]
   const onSubmit = async (params) => {
-      console.log("data",params)
-      try{
-        
+    try {
+      const querySnapshot = await getDocs(collection(db, "registrations"));
+      let registrations = [];
+      querySnapshot.forEach((doc) => {
+        registrations.push(doc.data());
+      });
+      let x = registrations.filter(registration => registration.user_email === params.user_email && registration.event_name === params.event_name )
+      if (x.length > 0) {
+         toast.error("You have already registered for this event!")   
+      }
+      else{
+
         await addDoc(collection(db, "registrations"), {
           ...params
-      })
-
-      await fetch("http://localhost:5000/api/send",{
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          ...params
         })
-      })
-      
+  
+        await fetch("https://dev-x-club-server.vercel.app/api/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            ...params
+          })
+        })
+        
+      }
 
-      
-      
-      }
-      catch(e){
-        alert("Error Occured")        
-      }
+    }
+    catch (e) {
+      alert("Error Occured")
+    }
   }
   return (
     <Box
@@ -147,12 +151,12 @@ function Card({
             d={{ base: "none", sm: "flex" }}
           >
             <HStack>
-            <Text color={useColorModeValue("gray.700", "gray.400")} fontSize="12px">
-              {date} - 
-            </Text>
-            <Text color={useColorModeValue("gray.700", "gray.400")} fontSize="12px">
-              {time}
-            </Text>
+              <Text color={useColorModeValue("gray.700", "gray.400")} fontSize="12px">
+                {date} -
+              </Text>
+              <Text color={useColorModeValue("gray.700", "gray.400")} fontSize="12px">
+                {time}
+              </Text>
             </HStack>
 
           </VStack>
@@ -165,14 +169,14 @@ function Card({
             </Text>
           </Heading>
           <br />
-          <Text 
+          <Text
             color={useColorModeValue("gray.700", "gray.400")}
             fontSize="14px"
-            >
-              {details}
-            </Text>
+          >
+            {details}
+          </Text>
           <HStack mt="3" fontSize="14px" color="#64707d">
-            
+
             {
               hashtags.map((hashtag, index) => (
                 <Text as={Link} key={index} >
@@ -180,8 +184,8 @@ function Card({
                 </Text>
               ))
             }
-     
-            
+
+
           </HStack>
           <HStack mt={3}>
 
@@ -285,35 +289,33 @@ function Card({
                     </FormStep>
                     <FormStep name="confirm" title="Confirm">
                       <FormLayout>
-                      <Field name="event_name" value={title} isRequired hidden  />
-                      <Field name="event_time" value={time} isRequired hidden />  
-                      <Field name="event_date" value={date} isRequired hidden />
-                      <Field name="user_email" value={user.email} isRequired hidden />
-                      <Field name="event_location" value={location} isRequired hidden />
+                        <Field name="event_name" value={title} isRequired hidden />
+                        <Field name="event_time" value={time} isRequired hidden />
+                        <Field name="event_date" value={date} isRequired hidden />
+                        <Field name="user_email" value={user.email} isRequired hidden />
+                        <Field name="event_location" value={location} isRequired hidden />
                         <ButtonGroup>
                           <NextButton />
                           <PrevButton variant="ghost" />
                         </ButtonGroup>
                       </FormLayout>
                     </FormStep>
-
                     <StepsCompleted>
                       <LoadingOverlay>
                         <LoadingText>Successfully Submitted!</LoadingText>
                       </LoadingOverlay>
-
                     </StepsCompleted>
                   </FormStepper>
                 </FormLayout>
               )}
             </StepForm>
           </ModalBody>
-
           <ModalFooter>
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <Toaster/>
     </Box>
 
 

@@ -12,13 +12,9 @@ import {
     Flex,
     GridItem,
     Icon,
-    Input,
     SimpleGrid,
     Stack,
-    VisuallyHidden,
     useDisclosure,
-    useMergeRefs,
-    useColorModeValue,
     AlertDialog,
     Image
 } from '@chakra-ui/react'
@@ -96,7 +92,7 @@ const CTA = () => {
                     color="gray.500"
                     lineHeight="base"
                 >
-                    Join us for the coolest tech. related events and workshops where you can network with like-minded people and learn from the best in the industry.
+                    Join us for the coolest tech. events and workshops where you can network with like-minded people and learn from the best in the industry.
                     <br /> <br />
                     <Button
                         onClick={onOpen}
@@ -123,7 +119,6 @@ const CTA = () => {
         isCentered
       >
         <AlertDialogOverlay />
-
         <AlertDialogContent>
           <AlertDialogHeader></AlertDialogHeader>
           <AlertDialogCloseButton />
@@ -180,9 +175,9 @@ const CTA = () => {
                     fontSize="xs"
                     color="gray.600"
                 >
-                    <Feature>Beginners</Feature>
-                    <Feature>Learners</Feature>
-                    <Feature>Leaders</Feature>
+                    <Feature>Begin</Feature>
+                    <Feature>Learn</Feature>
+                    <Feature>Lead</Feature>
                 </Stack>
             </Box>
         </Box>
