@@ -81,7 +81,7 @@ const CTA = () => {
                     }}
                     lineHeight="shorter"
                 >
-                Events && Workshops
+                Events && Bootcamps
                 </chakra.h1>
                 <chakra.p
                     mb={6}

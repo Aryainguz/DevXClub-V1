@@ -12,7 +12,6 @@ const Main = () => {
   const { logoutHandle, currentUser,search,db } = useContext(FirebaseContext)
   const [data,setData] = useState([])
   const navigate = useNavigate()
-  
 
   const handleLogout = () => {
     logoutHandle();
@@ -21,22 +20,28 @@ const Main = () => {
 
   useEffect(() => {
 
-    if(search!=='') {
-      const filteredData = data.filter(event => event.name.toLowerCase().includes(search.toLowerCase()))
-      setData(filteredData)
-    } else {
-      const getEventData = async () => {
-        const querySnapshot = await getDocs(collection(db, "events"));
-        let events = [];
-        querySnapshot.forEach((doc) => {
-            events.push(doc.data());
-        });
-        console.log("snapshot",querySnapshot)
-        console.log("events",events)
-        setData(events)
+    try{
+      if(search!=='') {
+        const filteredData = data.filter(event => event.name.toLowerCase().includes(search.toLowerCase()))
+        setData(filteredData)
+      } else {
+        const getEventData = async () => {
+          const querySnapshot = await getDocs(collection(db, "events"));
+          let events = [];
+          querySnapshot.forEach((doc) => {
+              events.push(doc.data());
+          });
+          console.log("snapshot",querySnapshot)
+          console.log("events",events)
+          setData(events)
+        }
+        getEventData();
       }
-      getEventData();
     }
+    catch(err){
+      alert("Error in fetching data")
+    }
+
   }, [search])
 
   return (
@@ -45,7 +50,7 @@ const Main = () => {
       <MainCTA />
       <Container maxW="4xl" px={{ base: 5, md: 8 }} py={16} mx="auto">
       <Box borderRadius="md">
-          <Text color={useColorModeValue("gray.700", "gray.300")} fontSize="3xl" lineHeight={1.2} fontWeight="bold" pos={'relative'} right={['0','52']} bottom='12'
+          <Text color={useColorModeValue("gray.700", "gray.300")} fontSize="3xl" lineHeight={1.2} fontWeight="bold" pos={'relative'} right={{ base: "24px", md: "30px", xl: "200px" }} bottom='12'
           fontFamily={'heading'}
           width={'max-content'}
           borderBottom={'3px solid'}
@@ -54,15 +59,16 @@ const Main = () => {
            Trending Now
           </Text>
         {data.map((event, index) => (
-          <Card
-            key={index}
-            title={event.name}
-            details = {event.details}
-            hashtags = {event.hashtags}
-            date = {event.date}
-            location = {event.location}
-            time = {event.time}
-            />
+
+       <Card
+        key={index}
+        title={event.name}
+        details = {event.details}
+        hashtags = {event.hashtags}
+        date = {event.date}
+        location = {event.location}
+        time = {event.time}
+        /> 
         ))}
       </Box>
     </Container>

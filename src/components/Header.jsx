@@ -7,7 +7,6 @@ import { FirebaseContext } from '../context/Firebase'
 import React from 'react'
 
 const Header = () => {
-    const { user } = useContext(FirebaseContext);
     const { isOpen, onClose, onOpen } = useDisclosure()
      return (
         <Box bgColor={"whiteAlpha.900"}>
@@ -21,7 +20,7 @@ const Header = () => {
                 <DrawerOverlay>
                     <DrawerContent>
                         <DrawerCloseButton />
-                        <DrawerHeader colorScheme="purple" p="4">DevClub</DrawerHeader>
+                        <DrawerHeader colorScheme="purple" p="4" as={Link} to={'/'}>DevClub</DrawerHeader>
                         <DrawerBody>
                             <VStack alignItems={"flex-start"}>
                                 <Link to="/">
@@ -29,16 +28,16 @@ const Header = () => {
                                         Home
                                     </Button>
                                 </Link>
-                                <Link to="/about">
-                                    <Button onClick={onClose} colorScheme='purple' variant={"ghost"}>
-                                        About
-                                    </Button>
-                                </Link>
-                                <Link to="/main">
+                                <Link to="/devxclub">
                                     <Button onClick={onClose} colorScheme='purple' variant={"ghost"}>
                                         DevClub
                                     </Button>
                                 </Link>
+                                <a href="https://chat.whatsapp.com/KSdvT1gNzSL1R5zwuytwQc" target='_blank'>
+                                    <Button onClick={onClose} colorScheme='purple' variant={"ghost"}>
+                                        Community
+                                    </Button>
+                                </a>
                             </VStack>
                             <HStack pos={"absolute"} bottom={"10"} left={"4"}>
                                 <Link to={'/login'}>

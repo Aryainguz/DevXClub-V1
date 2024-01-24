@@ -1,7 +1,5 @@
 import { chakra, Link, Stack, Box, useColorModeValue, Container, Button } from '@chakra-ui/react';
-// Here we have used react-icons package for the icon
-import { FaGithub, FaWhatsapp } from 'react-icons/fa';
-import { AiOutlineTwitter } from 'react-icons/ai';
+import { FaWhatsapp } from 'react-icons/fa';
 import { FirebaseContext } from '../context/Firebase'
 import { useContext } from 'react'
 import { useEffect } from 'react'
@@ -54,7 +52,7 @@ const MainCTA = () => {
             <Button
               leftIcon={<FaWhatsapp />}
               as={Link}
-              href="#"
+              href="https://chat.whatsapp.com/KSdvT1gNzSL1R5zwuytwQc"
               rounded="md"
               colorScheme="whatsapp"
               color="white"

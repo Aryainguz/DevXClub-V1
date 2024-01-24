@@ -45,9 +45,9 @@ const Card = ({ heading, description, icon, href }) => {
             {description}
           </Text>
         </Box>
-        <Button variant={"link"} colorScheme={"blue"} size={"sm"}>
+        {/* <Button variant={"link"} colorScheme={"blue"} size={"sm"}>
           Learn more
-        </Button>
+        </Button> */}
       </Stack>
     </Box>
   )
@@ -55,7 +55,7 @@ const Card = ({ heading, description, icon, href }) => {
 
 function Features() {
   return (
-    <Box p={["1","1"]}>
+    <Box p={["1","1"]} id="getstarted">
       <Stack spacing={4}as={Container} maxW={"3xl"} textAlign={"center"}>
       <chakra.h1
                     mb={3}
@@ -73,10 +73,10 @@ function Features() {
                     }}
                     lineHeight="shorter"
                 >
-                    What is DevClub ?
+                    What we have ?
                 </chakra.h1>
         <Text color={"gray.500"} fontSize={{ base: "sm", sm: "lg" }}>
-          DevClub is a community of Developers, Builders, and Leaders who collaborate to build some cool stuff and maybe dreams!
+          DevXClub is the place to fuel your passion of development with community of passionate developers and elite learning experience from our courses and events. 
         </Text>
       </Stack>
 
@@ -87,7 +87,7 @@ function Features() {
             heading={"Code"}
             icon={<Icon as={FcCommandLine} w={16} h={10} />}
             description={
-              "Code your ideas into reality with DevClub's elite resources and passionate community"
+              "Code your ideas into reality with DevXClub's elite learning resources and passionate community"
             }
             href={"#"}
           />
@@ -103,7 +103,7 @@ function Features() {
             heading={"Learn"}
             icon={<Icon as={FcIdea} w={10} h={10} />}
             description={
-              "Not sure about first two? start your Dev journey from scratch with elite our resources, events and community"
+              "Not sure about first two? start your Dev journey from scratch with elite learning resources, courses and events"
             }
             href={"#"}
           />

@@ -51,7 +51,7 @@ const Signin = ()=>{
         const emailVerified = data.emailVerified
       if(emailVerified){
         toast.success('Logged in successfully')
-        navigate('/main')
+        navigate('/devxclub')
       }
       else{
         toast.error('Please verify your email address!')
@@ -80,9 +80,9 @@ const Signin = ()=>{
       bg={useColorModeValue('gray.50', 'gray.800')}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
-          <Heading fontSize={'4xl'}>Sign in to NightClub!</Heading>
+          <Heading fontSize={'4xl'}>Sign in to DevXClub!</Heading>
           <Text fontSize={'lg'} color={'gray.600'}>
-            <Text color={'blue.400'}>Welcome Back!</Text>
+            <Text color={'purple.400'}>Welcome Back!</Text>
           </Text>
         </Stack>
         <Box
@@ -94,27 +94,27 @@ const Signin = ()=>{
             <form onSubmit={handleSubmit}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" name='email' onChange={(e)=>setEmail(e.target.value)}/>
+              <Input type="email" name='email' isRequired onChange={(e)=>setEmail(e.target.value)}/>
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" name='password' onChange={(e)=>setPassword(e.target.value)}/>
+              <Input type="password" name='password' isRequired onChange={(e)=>setPassword(e.target.value)}/>
             </FormControl>
             <Stack spacing={10}>
               <Stack
                 direction={{ base: 'column', sm: 'row' }}
                 align={'start'}
                 justify={'space-between'}>
-                <Text color={'blue.200'}>Don't have an account ?</Text> <br />
+                <Text color={'purple.300'}>Don't have an account ?</Text> <br />
               </Stack>
               <Link to={'/register'}>
-              <Text fontSize='sm' mt={'-7'} color={'blue.400'}>Register!</Text></Link>
+              <Text fontSize='sm' mt={'-7'} color={'purple.400'}>Register!</Text></Link>
               <Button
-                bg={'blue.400'}
+                bg={'purple.400'}
                 color={'white'}
                 type='submit'
                 _hover={{
-                  bg: 'blue.500'
+                  bg: 'purple.500'
                 }}>
                 Login
               </Button>

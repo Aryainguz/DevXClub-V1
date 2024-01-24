@@ -124,10 +124,10 @@ function Card({
       as="article"
       bg="white"
       borderRadius="md"
-      overflow="hidden"
       border="1px solid #000"
       _hover={{ boxShadow: "lg" }}
       transition="all 0.3s ease"
+      maxW={'fit-content'}
     >
       <Grid
         templateColumns={{ base: "1fr", sm: "max-content 1fr" }}
@@ -187,7 +187,7 @@ function Card({
 
 
           </HStack>
-          <HStack mt={3}>
+          <HStack mt={3} > 
 
             <Button
               bg="transparent"
@@ -212,7 +212,7 @@ function Card({
                 color={useColorModeValue("gray.600", "gray.400")}
               />
               <Box ml="2" as="span" d={{ base: "none", sm: "block" }} color={useColorModeValue("gray.600", "gray.400")}>
-                26 May 2024
+                {date}
               </Box>
             </Button>
             <Spacer />

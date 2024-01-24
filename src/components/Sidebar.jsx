@@ -19,11 +19,9 @@ import { Link } from 'react-router-dom'
 import {
   FiMenu,
   FiSearch,
-  FaRss,
   HiCode,
   MdHome,
   MdKeyboardArrowRight,
-  FaClipboardCheck,
   FaSignOutAlt
 } from 'react-icons/all'; // Import the required icons from the respective icon libraries
 import { useContext } from 'react'
@@ -128,7 +126,7 @@ const Sidebar = ({children}) => {
         color="gray.600"
         aria-label="Main Navigation"
       >
-        <NavItem icon={MdHome} as={Link} to={'/devclub'}>DevHome</NavItem>
+        <NavItem icon={MdHome} as={Link} to={'/devxclub'}>DevHome</NavItem>
         {/* <NavItem icon={FaRss} as={Link} to={'/event'}>DevEvents</NavItem> */}
         <NavItem icon={HiCode} onClick={integrations.onToggle}>
           DevCourses
@@ -225,7 +223,7 @@ const Sidebar = ({children}) => {
             >
               <FiSearch />
             </InputLeftElement>
-            <Input placeholder="Search for articles..." onChange={(e) => setSearch(e.target.value)} />
+            <Input placeholder="Search for events and bootcamps..." onChange={(e) => setSearch(e.target.value)} />
           </InputGroup>
         </Flex>
 

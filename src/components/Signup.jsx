@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { Center } from '@chakra-ui/layout'
 import { useContext } from 'react'
-import { FirebaseContext, auth } from '../context/Firebase'
+import { FirebaseContext } from '../context/Firebase'
 import toast, { Toaster } from 'react-hot-toast';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
 const Signup = () => {
@@ -26,7 +26,7 @@ const Signup = () => {
   const [password2, setPassword2] = useState('')
 
 
-  const { signUpwithEmail, putData, signInWithGoogle } = useContext(FirebaseContext);
+  const { signUpwithEmail, signInWithGoogle } = useContext(FirebaseContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -45,14 +45,8 @@ const Signup = () => {
         success: 'Verification email sent!',
         error: 'Error when fetching',
       });
-
-      // toast.success('Verification email sent!')
-      await putData(`users/${email}`, {
-        email: email,
-        password: password
-      })
     } catch (error) {
-      toast.error(error.message)
+      console.log(error.message)
     }
   }
 
@@ -106,17 +100,17 @@ const Signup = () => {
                   direction={{ base: 'column', sm: 'row' }}
                   align={'start'}
                   justify={'space-between'}>
-                  <Text color={'blue.200'} mt={'5'}>Already have an account ?</Text>
+                  <Text color={'purple.300'} mt={'5'}>Already have an account ?</Text>
                 </Stack>
                 <Link to={'/login'}>
-                  <Text fontSize='medium' mt={'-9'} color={'blue.400'}>Login</Text></Link>
+                  <Text fontSize='medium' mt={'-9'} color={'purple.400'}>Login</Text></Link>
                 <Button
-                  bg={'blue.400'}
+                  bg={'purple.400'}
                   color={'white'}
                   type='submit'
                   mt={'-7'}
                   _hover={{
-                    bg: 'blue.500',
+                    bg: 'purple.500',
                   }}>
                   Register
                 </Button>
